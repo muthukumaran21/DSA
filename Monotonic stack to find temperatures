@@ -1,0 +1,30 @@
+class Solution {
+    public int[] dailyTemperatures(int[] temperatures) {
+
+
+        Stack<Integer> stack = new Stack<>();
+        int len = temperatures.length;
+        int[] result = new int[len];
+
+        for(int currDay = 0 ; currDay< len ; currDay ++)
+        {
+
+            int currElement = temperatures[currDay];
+            while(!stack.isEmpty() && temperatures[stack.peek()] < currElement)
+            {
+                int prevDay = stack.pop();
+                result[prevDay] = currDay - prevDay;
+
+            }
+
+            stack.push(currDay);
+
+        }
+
+        return result;
+
+
+
+
+    }
+}
